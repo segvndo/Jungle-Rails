@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
+  get '/signup' => 'users#new'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get "/logout" => "sessions#destroy"
+
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
 
@@ -12,9 +17,13 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
   resources :about, only: [:index]
+  # resources :signup, only: [:new, :create]
+  # resources :login, only: [:new, :create, :destroy]
+  # resources :users, only: [:new, :create]
+  post '/users' => 'users#create'
 
   namespace :admin do
-    root to: 'dashboard#show'
+    root to: 'dashboard#index'
     resources :products, except: [:edit, :update, :show]
     resources :categories, except: [:edit, :update, :show]
   end
