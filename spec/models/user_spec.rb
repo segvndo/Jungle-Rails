@@ -36,6 +36,33 @@ RSpec.describe User, type: :model do
       expect(@user).not_to be_valid
     end
   end
+
+  describe '.authenticate_with_credentials' do
+
+    it "should only log in if email and password match" do
+      @user = User.new(first_name: "test", last_name: "test", email: "test", password: "test", password_confirmation: "test")
+      @user.save
+      @user = User.authenticate_with_credentials("test", "test")
+
+      expect(@user).not_to be_nil
+    end
+
+    it "should authenticate user if email has spaces before or after" do
+      @user = User.new(first_name: "test", last_name: "test", email: "test", password: "test", password_confirmation: "test")
+      @user.save
+      @user = User.authenticate_with_credentials(" test ", "test")
+
+      expect(@user).not_to be_nil
+    end
+
+    it "should authenticate user if email has different cases" do
+      @user = User.new(first_name: "test", last_name: "test", email: "test", password: "test", password_confirmation: "test")
+      @user.save
+      @user = User.authenticate_with_credentials("TEST", "test")
+
+      expect(@user).not_to be_nil
+    end
+  end
 end
 
 #     It must be created with a password and password_confirmation fields
