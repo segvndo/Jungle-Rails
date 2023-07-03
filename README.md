@@ -25,7 +25,14 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Dependencies
 
-- Rails 6.1 [Rails Guide](http://guides.rubyonrails.org/v6.1/)
-- Bootstrap 5
-- PostgreSQL 9.x
-- Stripe
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.4.0",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+
+## devDependencies
+    "cypress": "^9.7.0",
+    "webpack-dev-server": "^3.11.2"
